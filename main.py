@@ -1,10 +1,7 @@
-# get input text, padd it according to pkcs7, encrypt it using AES CBC mode and return the ciphertext
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
-import os
 import base64
 import socket
-import struct
 
 KEY = b"AAAAAAAAAAAAAAAA"
 IV = b"IVIVIVIVIVIVIVIV"
