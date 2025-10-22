@@ -1,0 +1,34 @@
+{
+    "title": "Padding oracle attack test cases",
+    "description": "Key: QUFBQUFBQUFBQUFBQUFBQQ==",
+    "testcases": {
+        "1": {
+            "action": "padding_oracle",
+            "arguments": {
+                "hostname": "localhost",
+                "port": 12345,
+                "key_id": 1,
+                "iv": "SVZJVklWSVZJVklWSVZJVg==",
+                "ciphertext": "p1o0PQg9Ki64hdgTnirltw=="
+            }
+        },
+        "2": {
+            "action": "padding_oracle",
+            "arguments": {
+                "hostname": "localhost",
+                "port": 12345,
+                "key_id": 1,
+                "iv": "SVZJVklWSVZJVklWSVZJVg==",
+                "ciphertext": "KpddeSy/GcjHURqTuVm7f0CN+hMBde7GUkUlVwFYhuM="
+            }
+        }
+    },
+    "expectedResults": {
+        "1": {
+            "plaintext": "TG9yZW0gaXBzdW0FBQUFBQ=="
+        },
+        "2": {
+            "plaintext": "SWNoIGJpbiBlaW4ga2xlaW5lciBwbGFpbnRleHQDAwM="
+        }
+    }
+}
