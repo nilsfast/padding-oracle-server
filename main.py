@@ -76,7 +76,7 @@ def handle_client(client_socket, injected_ciphertext=None):
                 print("Invalid Length Field received.")
                 return
 
-            l = int.from_bytes(length_field)
+            l = int.from_bytes(length_field, byteorder="little")
             print("recieved length:", length_field, l)
 
             if l == 0:
