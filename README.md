@@ -2,6 +2,8 @@
 
 A simple padding oracle server for testing padding oracle attacks.
 
+![A meme](https://en.meming.world/images/en/b/be/But_It%27s_Honest_Work.jpg)
+
 ## Usage
 
 ```bash
