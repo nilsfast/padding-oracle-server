@@ -113,6 +113,7 @@ def start_server(plaintext, host="localhost", port=12345):
     print("\tBase64:", base64.b64encode(ciphertext).decode())
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
         try:
             s.bind((host, port))
             print(f"\nServer listening on {host}:{port}")
