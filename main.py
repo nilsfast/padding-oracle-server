@@ -41,10 +41,12 @@ DECRYPT_AES = AES.new(KEY, AES.MODE_CBC, IV)
 def padding_oracle(ciphertext: bytes) -> bool:
     try:
         # Decrypt the ciphertext and check padding in one step
-        unpad(DECRYPT_AES.decrypt(ciphertext), AES.block_size)
-        return True  # Padding is correct
+        decryptor = AES.new(KEY, AES.MODE_CBC, IV)
+        unpad(decryptor.decrypt(ciphertext), AES.block_size)
+        return True # Padding is correct
     except (ValueError, KeyError):
-        return False  # Padding is incorrect
+        return False # Padding is incorrect
+
 
 
 def handle_client(client_socket, injected_ciphertext=None):
