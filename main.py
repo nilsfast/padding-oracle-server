@@ -15,6 +15,16 @@ print("IV:", base64.b64encode(IV).decode())
 AES_CIPHER = AES.new(KEY, AES.MODE_CBC, IV)
 
 
+def recv_exact(socket, n):
+    data = b""
+    while len(data) < n:
+        chunk = socket.recv(n - len(data))
+        if not chunk:
+            raise ConnectionError("Connection closed before receiving expected data")
+        data += chunk
+    return data
+
+
 def pad_and_encrypt(input_text: str) -> bytes:
     # Decode the base64 input text
     decoded_input = base64.b64decode(input_text)
@@ -86,7 +96,7 @@ def handle_client(client_socket, injected_ciphertext=None):
                 break
 
             # Step 4: Receive Q-Blocks (16 * l bytes)
-            q_blocks = client_socket.recv(16 * l)
+            q_blocks = recv_exact(client_socket, 16 * l)
             if len(q_blocks) != 16 * l:
                 print("Invalid Q-Blocks received.")
                 return
